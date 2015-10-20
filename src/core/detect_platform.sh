@@ -2,6 +2,8 @@ platform_family() {
   echo $PATISSIER_PLATFORM_FAMILY
 }
 
+[[ -z $PATISSIER_PLATFORM_FAMILY ]]  || return
+
 if test -f '/etc/arch-release'; then
   PATISSIER_PLATFORM_FAMILY='arch'
 elif test -f '/etc/redhat-release'; then
