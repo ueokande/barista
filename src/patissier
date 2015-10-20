@@ -1,0 +1,10 @@
+REQUIRE_ROOT=$(dirname $BASH_SOURCE)
+require() {
+  source ${REQUIRE_ROOT}/$1
+}
+
+require 'core/helper.sh'
+require 'core/detect_platform.sh'
+
+require 'descriptor.sh'
+require 'platforms.sh'
