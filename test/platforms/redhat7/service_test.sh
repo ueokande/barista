@@ -1,5 +1,5 @@
-PATISSIER_PLATFORM_FAMILY=redhat7
-source $(dirname $0)/../src/patissier
+BARISTA_PLATFORM_FAMILY=redhat7
+source $(dirname $0)/../src/barista
 
 assert_true \
   "Service is started by systemd on redhat7" \

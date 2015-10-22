@@ -1,5 +1,5 @@
-PATISSIER_PLATFORM_FAMILY=redhat5
-source $(dirname $0)/../src/patissier
+BARISTA_PLATFORM_FAMILY=redhat5
+source $(dirname $0)/../src/barista
 
 assert_true \
   "Service is started by 'service' on redhat5" \
