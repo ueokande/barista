@@ -10,3 +10,4 @@ declare_resources() {
 }
 
 require 'descriptor/service.sh'
+require 'descriptor/package.sh'
