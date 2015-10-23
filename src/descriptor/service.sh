@@ -11,12 +11,10 @@ service() {
   shift
   declare -A params='('"$@"')'
 
-  actions=${params[action]}
+  target=${params[name]-$target}
+  [ -z ${params[action]+x} ] && fatal "Parameter \`action\' is required"
 
-  [[ -z ${params[name]} ]] || target=${params[name]}
-  [[ -z $actions ]] && fatal "Parameter \`action\' is required"
-
-  for action in ${actions}; do
+  for action in ${params[action]}; do
     case $action in
     enable) service_enable $target;;
     disable) service_disable $target;;

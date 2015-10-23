@@ -1,3 +1,5 @@
 sudo: false
 language: bash
-script: bash bin/run_test
+script:
+- bash bin/run_test
+- bash -u bin/run_test

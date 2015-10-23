@@ -33,9 +33,9 @@ function assert_true() {
     printf '\e[32m.\e[m'
   else
     printf "\e[31mF\e[m"
-    TEST_FAILURES=("${TEST_FAILURES[@]}" "$target")
-    TEST_FAILURE_REASONS=("${TEST_FAILURE_REASONS[@]}" "$reason")
-    TEST_FAILURE_STDERRS=("${TEST_FAILURE_STDERRS[@]}" "$stderr")
+    TEST_FAILURES=("${TEST_FAILURES[@]:-}" "$target")
+    TEST_FAILURE_REASONS=("${TEST_FAILURE_REASONS[@]:-}" "$reason")
+    TEST_FAILURE_STDERRS=("${TEST_FAILURE_STDERRS[@]:-}" "$stderr")
   fi
 }
 

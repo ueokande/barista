@@ -9,13 +9,14 @@ package() {
   shift
   declare -A params='('"$@"')'
 
-  [[ -z ${params[name]} ]] || target=${params[name]}
+  target=${params[name]-$target}
   action=${params[action]-install}
+  version=${params[version]-}
   case $action in
     install)
-      echo "$(package_is_installed $target ${params[version]}) || $(package_install $target ${params[version]})";;
+      echo "$(package_is_installed $target $version) || $(package_install $target $version)";;
     remove)
-      echo "$(package_is_installed $target ${params[version]}) || $(package_remove $target ${params[version]})" ;;
+      echo "$(package_is_installed $target $version) || $(package_remove $target $version)";;
   esac
 }
 declare_resources action name version
