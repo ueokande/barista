@@ -1,1 +1,1 @@
-require 'platforms/common/service_init.sh'
+require 'platforms/service/init.sh'

@@ -1,1 +1,1 @@
-require 'platforms/common/service_systemd.sh'
+require 'platforms/service/systemd.sh'
