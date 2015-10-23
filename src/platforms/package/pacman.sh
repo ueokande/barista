@@ -1,5 +1,5 @@
 package_is_installed() {
-  if [ -z $2 ]; then
+  if [ -z ${2+x} ]; then
     echo "pacman -Q $1"
   else
     ( echo $2 | grep '-' >/dev/null ) && ptn="^$2$" || ptn="^$2-"
