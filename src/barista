@@ -1,6 +1,8 @@
-REQUIRE_ROOT=$(dirname $BASH_SOURCE)
-require() {
-  source ${REQUIRE_ROOT}/$1
+shopt -s expand_aliases
+
+alias require='require_from $(dirname $BASH_SOURCE)'
+require_from() {
+  source $1/$2
 }
 
 require 'core/helper.sh'
