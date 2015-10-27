@@ -1,18 +1,18 @@
 BARISTA_PLATFORM_FAMILY=redhat7
 source $(dirname $0)/../src/barista
 
-assert_true \
-  'package command includes package name' \
-  'package nginx | grep nginx'
+testcase_package_command_includes_package_name() {
+  assert_match 'nginx' "$(package nginx)"
+}
 
-assert_true \
-  'package command includes remove' \
-  'package nginx $(action remove) | grep remove'
+testcase_package_command_includes_remove() {
+  assert_match 'remove' "$(package nginx $(action remove))"
+}
 
-assert_true \
-  'package command includes installes as default' \
-  'package nginx | grep install'
+testcase_package_command_includes_installes_as_default() {
+  assert_match 'install' "$(package nginx)"
+}
 
-assert_true \
-  'package command use specified package' \
-  'package webserver $(name nginx) | grep nginx'
+testcase_package_command_use_specified_package() {
+  assert_match 'nginx' "$(package webserver $(name nginx))"
+}

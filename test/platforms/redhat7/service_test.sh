@@ -1,10 +1,10 @@
 BARISTA_PLATFORM_FAMILY=redhat7
 source $(dirname $0)/../src/barista
 
-assert_true \
-  "Service is started by systemd on redhat7" \
-  "service sshd $(action start) | grep systemctl"
+testcase_service_is_started_by_systemd_on_redhat7() {
+  assert_match 'systemctl' "$(service sshd $(action start))"
+}
 
-assert_true \
-  "Service is enabled by systemd on redhat7" \
-  "service sshd $(action enable) | grep systemctl"
+testcase_service_is_enabled_by_systemd_on_redhat7() {
+  assert_match 'systemctl' "$(service sshd $(action enable))"
+}
