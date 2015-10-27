@@ -1,2 +1,2 @@
-require 'platforms/service/init.sh'
-require 'platforms/package/yum.sh'
+require 'service/init.sh'
+require 'package/yum.sh'

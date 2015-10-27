@@ -1,2 +1,2 @@
-require 'platforms/service/systemd.sh'
-require 'platforms/package/yum.sh'
+require 'service/systemd.sh'
+require 'package/yum.sh'
