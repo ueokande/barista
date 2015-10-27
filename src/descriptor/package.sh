@@ -12,6 +12,8 @@ package() {
   target=${params[name]-$target}
   action=${params[action]-install}
   version=${params[version]-}
+  info "    package : $target $version"
+  info "        action : $action"
   case $action in
     install)
       run "( $(package_is_installed $target $version) 2>/dev/null) || $(package_install $target $version)";;

@@ -10,26 +10,32 @@ Commands:
 "
 }
 
-mode=$1
-
+BARISTA_RUN_MODE=$1
 source $(dirname $0)'/../src/barista.sh'
 
 shift
-for recipe in $@; do
-  source $recipe
-done
 
-if [ $mode = ssh ]; then
+case $BARISTA_RUN_MODE in
+build)
+  ;;
+local)
+  BARISTA_LOG_LEVEL=${BARISTA_LOG_LEVEL-info}
+  ;;
+ssh)
   echo 'Not implemented' >&2
   exit 1
-elif [ $mode = local ]; then
-  eval "$(run_commands)"
-elif [ $mode = build ]; then
-  run_commands
-elif [ $mode = help ]; then
+  ;;
+help)
   usage
   exit 0
-else
+  ;;
+*)
   usage
   exit 1
-fi
+esac
+
+info "Starting barista..."
+for recipe in $@; do
+  info "Recipe: $recipe"
+  source $recipe
+done

@@ -14,7 +14,9 @@ service() {
   target=${params[name]-$target}
   [ -z ${params[action]+x} ] && fatal "Parameter \`action\' is required"
 
+  info "    service : $target"
   for action in ${params[action]}; do
+    info "        action : $action"
     case $action in
     enable) run $(service_enable $target);;
     disable) run $(service_disable $target);;

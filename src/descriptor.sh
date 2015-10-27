@@ -13,6 +13,14 @@ BARISTA_RUN_COMMANDS=()
 
 run() {
   BARISTA_RUN_COMMANDS+=("$(echo $@)")
+  case $BARISTA_RUN_MODE in
+  local)
+    eval "$@" || exit 1
+    ;;
+  build)
+    echo "$@"
+    ;;
+  esac
 }
 
 run_commands(){
