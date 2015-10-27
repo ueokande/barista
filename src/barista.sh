@@ -5,8 +5,6 @@ require_from() {
   source $1/$2
 }
 
-require 'core/helper.sh'
-require 'core/detect_platform.sh'
-
+require 'core.sh'
 require 'descriptor.sh'
 require 'platforms.sh'

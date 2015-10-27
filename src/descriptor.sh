@@ -9,5 +9,17 @@ declare_resources() {
   done
 }
 
+BARISTA_RUN_COMMANDS=()
+
+run() {
+  BARISTA_RUN_COMMANDS+=("$(echo $@)")
+}
+
+run_commands(){
+  for cmd in "${BARISTA_RUN_COMMANDS[@]}"; do
+    echo $cmd
+  done
+}
+
 require 'descriptor/service.sh'
 require 'descriptor/package.sh'
