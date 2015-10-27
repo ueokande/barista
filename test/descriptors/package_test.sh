@@ -1,5 +1,5 @@
 BARISTA_PLATFORM_FAMILY=redhat7
-source $(dirname $0)/../src/barista
+source $(dirname $0)/../src/barista.sh
 
 testcase_package_command_includes_package_name() {
   assert_match 'nginx' "$(package nginx)"

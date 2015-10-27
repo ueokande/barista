@@ -1,5 +1,5 @@
 BARISTA_PLATFORM_FAMILY=redhat5
-source $(dirname $0)/../src/barista
+source $(dirname $0)/../src/barista.sh
 
 testcase_service_is_started_by_service_on_redhat5() {
   assert_match 'service' "$(service sshd $(action start))"

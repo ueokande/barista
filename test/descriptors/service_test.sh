@@ -1,5 +1,5 @@
 BARISTA_PLATFORM_FAMILY=redhat7
-source $(dirname $0)/../src/barista
+source $(dirname $0)/../src/barista.sh
 
 testcase_service_returns_false_if_action_is_not_specified() {
   assert_false service sshd
