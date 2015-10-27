@@ -6,5 +6,6 @@ testcase_service_returns_false_if_action_is_not_specified() {
 }
 
 testcase_service_issue_2_commands_when_2_commands_specified() {
-  assert_equal 2 $(service sshd $(action start enable) | wc -l)
+  service sshd $(action start enable)
+  assert_equal 2 $(run_commands | wc -l)
 }
