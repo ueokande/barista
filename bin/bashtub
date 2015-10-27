@@ -47,7 +47,7 @@ function located_assert_match() {
   regex=$4
   actual=$5
 
-  if [[ "$actual" =~ "$regex" ]]; then
+  if [[ "$actual" =~ $regex ]]; then
     printf '\e[32m.\e[m'
   else
     printf "\e[31mF\e[m"
@@ -61,8 +61,7 @@ function located_assert_true() {
 
   params=$@
   shift; shift; shift
-  command="$@"
-  . <({ stderr=$({ stdout=$(eval ${command}); status=$?; } 2>&1; declare -p stdout status >&2); declare -p stderr; } 2>&1)
+  subject $@
   if [[ $status -eq 0 ]]; then
     printf '\e[32m.\e[m'
   else
@@ -77,8 +76,7 @@ function located_assert_false() {
 
   params=$@
   shift; shift; shift
-  command="$@"
-  . <({ stderr=$({ stdout=$(eval ${command}); status=$?; } 2>&1; declare -p stdout status >&2); declare -p stderr; } 2>&1)
+  subject $@
   if [[ $status -ne 0 ]]; then
     printf '\e[32m.\e[m'
   else
@@ -87,6 +85,13 @@ function located_assert_false() {
   fi
 }
 alias assert_false='located_assert_false $BASH_SOURCE $LINENO $FUNCNAME'
+
+subject() {
+  . <({ err=$({ out=$(eval $@); sta=$?; } 2>&1; declare -p out sta >&2); declare -p err; } 2>&1)
+  stdout="$out"
+  stderr="$err"
+  status="$sta"
+}
 
 print_result() {
   printf '\n\n'
@@ -107,17 +112,15 @@ print_result() {
   fi
 }
 
-if [ $# -eq 0 ]; then
-  files=$(find "$(dirname $0)/../test" -name '*_test.sh')
-else
-  files=$@
-fi
-for f in $files; do
+for f in $@; do
+  unset teardown setup
   source "$f"
+  hash setup 2>/dev/null && setup
   for testcase in $(compgen -A function | grep '^testcase_'); do
     $testcase
     unset $testcase
   done
+  hash teardown 2>/dev/null && teardown
 done
 
 print_result
