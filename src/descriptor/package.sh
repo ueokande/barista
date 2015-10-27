@@ -14,9 +14,9 @@ package() {
   version=${params[version]-}
   case $action in
     install)
-      run "$(package_is_installed $target $version) || $(package_install $target $version)";;
+      run "( $(package_is_installed $target $version) 2>/dev/null) || $(package_install $target $version)";;
     remove)
-      run "$(package_is_installed $target $version) || $(package_remove $target $version)";;
+      run "( $(package_is_installed $target $version) 2>/dev/null) || $(package_remove $target $version)";;
   esac
 }
 declare_resources action name version
