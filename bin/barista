@@ -1,0 +1,35 @@
+#!/bin/sh
+
+usage() {
+  printf "\
+Commands:
+  barista local RECIPE [RECIPE...]  # Run Barista locally
+  barista ssh RECIPE [RECIPE...]    # Run Barista via ssh
+  barista build RECIPE [RECIPE...]  # Build single script file
+  barista help                      # Disiplay help
+"
+}
+
+mode=$1
+
+source $(dirname $0)'/../src/barista.sh'
+
+shift
+for recipe in $@; do
+  source $recipe
+done
+
+if [ $mode = ssh ]; then
+  echo 'Not implemented' >&2
+  exit 1
+elif [ $mode = local ]; then
+  eval "$(run_commands)"
+elif [ $mode = build ]; then
+  run_commands
+elif [ $mode = help ]; then
+  usage
+  exit 0
+else
+  usage
+  exit 1
+fi
