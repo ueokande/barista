@@ -23,3 +23,4 @@ run_commands(){
 
 require 'descriptor/service.sh'
 require 'descriptor/package.sh'
+require 'descriptor/directory.sh'
