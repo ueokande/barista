@@ -7,9 +7,9 @@
 package() {
   parse_params
 
-  target=${name-$target}
-  action=${action-install}
-  version=${version-}
+  local target=${name-$target}
+  local action=${action-install}
+  local version=${version-}
 
   case $action in
   install)
