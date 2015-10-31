@@ -15,6 +15,14 @@ run() {
   BARISTA_RUN_COMMANDS+=("$(echo $@)")
 }
 
+alias parse_params='
+  declare -A params="([target]=$@)"
+  local key
+  for key in ${!params[@]}; do
+    local $key="${params[$key]}"
+  done
+'
+
 run_commands(){
   for cmd in "${BARISTA_RUN_COMMANDS[@]}"; do
     echo $cmd

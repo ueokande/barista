@@ -5,18 +5,17 @@
 # The descriptor installs package 'nginx'
 
 package() {
-  target="$1"
-  shift
-  declare -A params='('"$@"')'
+  parse_params
 
-  target=${params[name]-$target}
-  action=${params[action]-install}
-  version=${params[version]-}
+  target=${name-$target}
+  action=${action-install}
+  version=${version-}
+
   case $action in
-    install)
-      run "$(package_is_installed $target $version) || $(package_install $target $version)";;
-    remove)
-      run "$(package_is_installed $target $version) || $(package_remove $target $version)";;
+  install)
+    run "$(package_is_installed $target $version) || $(package_install $target $version)";;
+  remove)
+    run "$(package_is_installed $target $version) || $(package_remove $target $version)";;
   esac
 }
 declare_resources action name version
