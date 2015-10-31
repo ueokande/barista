@@ -4,6 +4,7 @@
 # $ declare_resources hoge  # define function `hoge'
 # $ hoge '123'              # echo '[hoge]=123'
 declare_resources() {
+  local r
   for r in $@; do
     eval ${r}'() { echo "['${r}']=\"$@\""; }'
   done
@@ -15,7 +16,16 @@ run() {
   BARISTA_RUN_COMMANDS+=("$(echo $@)")
 }
 
+alias parse_params='
+  declare -A params="([target]=$@)"
+  local key
+  for key in ${!params[@]}; do
+    local $key="${params[$key]}"
+  done
+'
+
 run_commands(){
+  local cmd
   for cmd in "${BARISTA_RUN_COMMANDS[@]}"; do
     echo $cmd
   done

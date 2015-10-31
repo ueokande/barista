@@ -1,5 +1,5 @@
 package_is_installed() {
-  cmd="rpm -q $1"
+  local cmd="rpm -q $1"
   if ! [ -z ${2+x} ]; then
     cmd="$cmd | grep -w -- $1-$2"
   fi

@@ -7,13 +7,12 @@
 # The descriptor enables and starts sshd service.
 
 service() {
-  target="$1"
-  shift
-  declare -A params='('"$@"')'
+  parse_params
 
-  target=${params[name]-$target}
-  [ -z ${params[action]+x} ] && fatal "Parameter \`action\' is required"
+  target=${name-$target}
+  [ -z ${action+x} ] && fatal "Parameter \`action\' is required"
 
+  local action
   for action in ${params[action]}; do
     case $action in
     enable) run $(service_enable $target);;
