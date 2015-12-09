@@ -1,10 +1,10 @@
 source $(dirname $BASH_SOURCE)/../../test_helper.sh
 
-setup() {
+before_each() {
   TMPDIR=$(mktemp -d)
 }
 
-teardown() {
+after_each() {
   rm -rf "$TMPDIR"
 }
 
