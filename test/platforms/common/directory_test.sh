@@ -1,3 +1,4 @@
+BARISTA_PLATFORM_FAMILY=arch
 source $(dirname $BASH_SOURCE)/../../test_helper.sh
 
 before_each() {
