@@ -1,5 +1,5 @@
 BARISTA_PLATFORM_FAMILY=arch
-source $(dirname $0)/../src/barista.sh
+source $(dirname $BASH_SOURCE)/../test_helper.sh
 
 setup() {
   TMPDIR=$(mktemp -d)
