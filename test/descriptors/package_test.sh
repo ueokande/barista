@@ -1,5 +1,5 @@
 BARISTA_PLATFORM_FAMILY=redhat7
-source $(dirname $0)/../src/barista.sh
+source $(dirname $BASH_SOURCE)/../test_helper.sh
 
 testcase_package_command_includes_package_name() {
   package nginx

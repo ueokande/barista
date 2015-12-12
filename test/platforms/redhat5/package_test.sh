@@ -1,5 +1,5 @@
 BARISTA_PLATFORM_FAMILY=redhat5
-source $(dirname $0)/../src/barista.sh
+source $(dirname $BASH_SOURCE)/../../test_helper.sh
 
 testcase_packages_are_managed_by_yum_on_redhat5() {
   subject package_install nginx
